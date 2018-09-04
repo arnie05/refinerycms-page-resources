@@ -2,8 +2,13 @@ module Refinery
   module PageResources
     module Extension
       def has_many_page_resources
-        has_many :page_resources, proc { order('position ASC') }, :as => :page, :class_name => 'Refinery::PageResource'
-        has_many :resources, proc { order('position ASC') }, :through => :page_resources, :class_name => 'Refinery::Resource'
+        #has_many :page_resources, proc { order('position ASC') }, :as => :page, :class_name => 'Refinery::PageResource'
+        #has_many :resources, proc { order('position ASC') }, :through => :page_resources, :class_name => 'Refinery::Resource'
+        has_many :page_resources, :as => :page, :class_name => 'Refinery::PageResource'        
+        has_many :resources, :through => :page_resources, :class_name => 'Refinery::Resource'
+        
+
+
         # accepts_nested_attributes_for MUST come before def resources_attributes=
         # this is because resources_attributes= overrides accepts_nested_attributes_for.
 
